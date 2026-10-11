@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17130f">
+<title>Royal Rasoi | Indian Restaurant</title>
+<meta name="description" content="Discover delicious Indian food at Royal Rasoi. Explore our menu and order through WhatsApp.">
+<style>
+:root {
+  --bg: #17130f;
+  --panel: #211b15;
+  --gold: #e6b65c;
+  --cream: #fff6e8;
+  --muted: #c4b6a4;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.container { width: min(1100px, 90%); margin: auto; }
+header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(23,19,15,.96);
+  border-bottom: 1px solid #423528;
+}
+nav {
+  min-height: 76px; display: flex; align-items: center;
+  justify-content: space-between; gap: 20px;
+}
+.logo { font-size: 21px; font-weight: 800; color: var(--gold); }
+.logo span { display: block; font-size: 10px; letter-spacing: 4px; color: var(--cream); }
+.navlinks { display: flex; align-items: center; gap: 25px; }
+.navlinks a:hover { color: var(--gold); }
+.btn {
+  display: inline-block; padding: 13px 20px; border-radius: 6px;
+  background: var(--gold); color: #21170b; font-weight: 800;
+  border: 0; cursor: pointer;
+}
+.btn:hover { filter: brightness(1.08); }
+.menu-toggle {
+  display: none; background: none; color: white;
+  border: 1px solid #76634b; border-radius: 6px; padding: 8px 12px;
+}
+.hero {
+  min-height: 570px; display: flex; align-items: center;
+  background:
+    linear-gradient(90deg, rgba(23,19,15,.97), rgba(23,19,15,.68) 55%, rgba(23,19,15,.12)),
+    url("https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+}
+.hero-content { max-width: 650px; padding: 85px 0; }
+.eyebrow {
+  color: var(--gold); text-transform: uppercase;
+  letter-spacing: 3px; font-size: 12px; font-weight: 800;
+}
+h1 { font-size: clamp(42px, 7vw, 76px); line-height: 1.06; margin: 16px 0; }
+h1 span, h2 span { color: var(--gold); }
+.hero p { max-width: 490px; color: var(--muted); font-size: 17px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.btn-outline { border: 1px solid var(--gold); color: var(--gold); padding: 12px 20px; border-radius: 6px; }
+section { padding: 76px 0; }
+.section-heading { text-align: center; max-width: 600px; margin: 0 auto 36px; }
+h2 { font-size: clamp(30px, 5vw, 44px); line-height: 1.2; margin: 10px 0; }
+.section-heading p, .muted { color: var(--muted); }
+.menu-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.food-card {
+  background: var(--panel); border: 1px solid #3b2f23;
+  border-radius: 12px; overflow: hidden; transition: transform .2s;
+}
+.food-card:hover { transform: translateY(-5px); }
+.food-card img { width: 100%; height: 210px; object-fit: cover; display: block; }
+.food-info { padding: 19px; }
+.food-info h3 { margin: 0 0 5px; }
+.food-info p { color: var(--muted); font-size: 14px; min-height: 44px; margin: 0 0 12px; }
+.food-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.price { color: var(--gold); font-size: 20px; font-weight: 800; }
+.small-btn { background: transparent; color: var(--gold); border: 1px solid #78603b; padding: 8px 11px; border-radius: 5px; cursor: pointer; }
+.about-grid, .contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+}
+.about-photo {
+  width: 100%; height: 360px; object-fit: cover; border-radius: 12px;
+}
+.feature { padding: 14px 0; border-bottom: 1px solid #403327; }
+.feature strong { color: var(--gold); }
+.contact-box { padding: 28px; background: var(--panel); border: 1px solid #3b2f23; border-radius: 12px; }
+.contact-box p { color: var(--muted); }
+.contact-box a { color: var(--gold); }
+.cta {
+  background: linear-gradient(120deg, #342519, #20180f);
+  text-align: center; border-block: 1px solid #57412a;
+}
+.cta p { color: var(--muted); }
+footer { padding: 25px 0; color: var(--muted); font-size: 13px; }
+.footer-row { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+@media(max-width: 760px) {
+  .menu-toggle { display: block; }
+  .navlinks {
+    display: none; position: absolute; top: 76px; left: 0; right: 0;
+    padding: 22px 5%; background: var(--bg);
+    border-bottom: 1px solid #423528; flex-direction: column; align-items: stretch;
+  }
+  .navlinks.open { display: flex; }
+  .navlinks .btn { text-align: center; }
+  .hero { min-height: 530px; background-position: 60% center; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .food-card img { height: 230px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  section { padding: 55px 0; }
+  .about-photo { height: 280px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <a class="logo" href="#home">ROYAL RASOI<span>INDIAN KITCHEN</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"
+      aria-expanded="false">☰ Menu</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#home">Home</a>
+      <a href="#menu">Our Menu</a>
+      <a href="#about">Our Story</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="#menu">Explore Menu ↗</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">A little taste of India</div>
+        <h1>Good food.<br><span>Great memories.</span></h1>
+        <p>From aromatic biryani to flavour-packed curries,
+        discover food made to bring everyone to the table.</p>
+        <div class="actions">
+          <a class="btn" href="#menu">Discover Our Menu ↓</a>
+          <a class="btn-outline" href="#contact">Find Our Restaurant</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Made with love</div>
+        <h2>Our <span>Popular Dishes</span></h2>
+        <p>A sample menu for this website demo. Prices and dishes
+        must be replaced with the real restaurant's menu.</p>
+      </div>
+
+      <div class="menu-grid">
+        <article class="food-card">
+          <img src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80" alt="Biryani rice dish" loading="lazy">
+          <div class="food-info">
+            <h3>Chicken Dum Biryani</h3>
+            <p>Fragrant rice, rich spices and a comforting classic.</p>
+            <div class="food-bottom">
+              <span class="price">₹199</span>
+              <button class="small-btn" onclick="orderDish('Chicken Dum Biryani',199)">Order ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="food-card">
+          <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80" alt="Indian curry" loading="lazy">
+          <div class="food-info">
+            <h3>Paneer Butter Masala</h3>
+            <p>Paneer in a creamy, flavourful tomato gravy.</p>
+            <div class="food-bottom">
+              <span class="price">₹179</span>
+              <button class="small-btn" onclick="orderDish('Paneer Butter Masala',179)">Order ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="food-card">
+          <img src="https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=800&q=80" alt="Indian flatbread and curry" loading="lazy">
+          <div class="food-info">
+            <h3>Butter Naan Combo</h3>
+            <p>Soft, buttery naan paired with a tasty curry.</p>
+            <div class="food-bottom">
+              <span class="price">₹149</span>
+              <button class="small-btn" onclick="orderDish('Butter Naan Combo',149)">Order ↗</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-grid">
+      <img class="about-photo"
+        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=85"
+        alt="Restaurant dining space" loading="lazy">
+      <div>
+        <div class="eyebrow">More than a meal</div>
+        <h2>A place for <span>every occasion</span></h2>
+        <p class="muted">Whether it is a family dinner, a quick lunch,
+        or a celebration with friends, good food makes the moment special.</p>
+        <div class="feature"><strong>01.</strong> A welcoming dining experience</div>
+        <div class="feature"><strong>02.</strong> Dishes for sharing with family</div>
+        <div class="feature"><strong>03.</strong> A menu full of flavour</div>
+        <p class="muted">Demo copy: replace these statements with
+        verified details about your client's restaurant.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="eyebrow">Your table is waiting</div>
+      <h2>Craving something <span>delicious?</span></h2>
+      <p>Explore the menu or contact us to ask about an order.</p>
+      <a class="btn" href="#contact">Get in Touch ↗</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Come say hello</div>
+        <h2>Visit <span>Us</span></h2>
+        <p>Replace all demo contact information before showing this as a real restaurant site.</p>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <h3>Royal Rasoi</h3>
+          <p class="muted">Your favourite fictional neighbourhood restaurant.</p>
+          <p>📍 <span id="address">Add the real restaurant address here</span></p>
+          <p>🕒 Add verified opening hours here</p>
+          <p>📞 <a id="phoneLink" href="#">Add restaurant phone number</a></p>
+        </div>
+        <div class="contact-box">
+          <h3>Let's get you something tasty</h3>
+          <p>Ask about menu items, availability, or takeaway orders.</p>
+          <a class="btn" id="whatsappLink" href="#" target="_blank" rel="noopener">
+            Chat on WhatsApp ↗
+          </a>
+          <p style="font-size:12px">WhatsApp orders are requests, not confirmed bookings.
+          The restaurant must confirm availability and price.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© <span id="year"></span> Royal Rasoi — Demo Website</span>
+    <span>Made with care for good food.</span>
+  </div>
+</footer>
+
+<script>
+/* DEMO SETTINGS: replace these before client delivery. */
+const RESTAURANT = {
+  whatsapp: "919876543210",
+  phone: "+91 98765 43210",
+  address: "Replace with the real address"
+};
+
+document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("address").textContent = RESTAURANT.address;
+
+const phoneLink = document.getElementById("phoneLink");
+phoneLink.textContent = RESTAURANT.phone;
+phoneLink.href = "tel:" + RESTAURANT.phone.replace(/[^\d+]/g, "");
+
+document.getElementById("whatsappLink").href =
+  "https://wa.me/" + RESTAURANT.whatsapp +
+  "?text=" + encodeURIComponent("Hello! I would like to know more about your menu.");
+
+function orderDish(name, price) {
+  const message = "Hello! I would like to enquire about " + name +
+    " (listed demo price: ₹" + price + "). Please confirm availability and price.";
+  window.open("https://wa.me/" + RESTAURANT.whatsapp +
+    "?text=" + encodeURIComponent(message), "_blank", "noopener");
+}
+
+const toggle = document.getElementById("menuToggle");
+const links = document.getElementById("navlinks");
+
+toggle.addEventListener("click", () => {
+  const isOpen = links.classList.toggle("open");
+  toggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+links.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    links.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+});
+</script>
+
+</body>
+</html>
